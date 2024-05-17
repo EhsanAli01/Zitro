@@ -1,10 +1,10 @@
 import React from 'react'
 
-const CardBox = (props) => {
-    const { thumbnail, title, rating, brand, description, price, stock } = props.detail;
+const CardBox = ({ detail }) => {
+    const { thumbnail, title, rating, brand, description, price, stock } = detail;
     return (
         <div>
-            <div className='cursor-pointer w-full border border-gray-600 rounded-lg px-7 py-4 flex flex-col gap-4 transition-all duration-300 hover:shadow-2xl'>
+            <div className='h-full cursor-pointer w-full border border-gray-600 rounded-lg px-7 py-4 flex flex-col gap-4 transition-all duration-300 hover:shadow-2xl'>
                 <div className='w-full flex items-center gap-4'>
                     <div className='bg-slate-50 w-20 h-20 border border-gray-600 rounded-2xl overflow-hidden'>
                         <img src={thumbnail} alt="Product" className='h-full w-full object-cover' />

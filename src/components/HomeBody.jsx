@@ -28,15 +28,15 @@ const HomeBody = () => {
                     <IoSearchSharp className='h-6 w-6 mx-2' />
                 </div>
             </section>
-            <section className='mx-24 grid gap-x-6 gap-y-4 sm:grid-cols-1 md:grid-cols-2 max-sm:mx-10'>
+            <section className='mx-24 grid gap-x-6 gap-y-4 grid-rows-3 sm:grid-cols-1 md:grid-cols-2 max-sm:mx-10'>
                 {filteredProducts?.map(data => <CardBox key={data.id} detail={data} />)}
             </section>
             <section className='h-24 flex justify-center items-center gap-4 text-sm font-semibold max-md:text-sm'>
-                <button className='bg-gray-500 text-white border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center'><FaArrowLeft /></button>
-                <button className='border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center max-sm:hidden'>1</button>
-                <button className='border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center max-sm:hidden'>2</button>
-                <button className='border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center max-sm:hidden'>3</button>
-                <button className='border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center max-sm:hidden'>4</button>
+                <button className='cursor-not-allowed bg-gray-500 text-white border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center'><FaArrowLeft /></button>
+                <button className='transition-all duration-300 hover:bg-blue-950 hover:text-white border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center max-sm:hidden'>1</button>
+                <button className='transition-all duration-300 hover:bg-blue-950 hover:text-white border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center max-sm:hidden'>2</button>
+                <button className='transition-all duration-300 hover:bg-blue-950 hover:text-white border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center max-sm:hidden'>3</button>
+                <button className='transition-all duration-300 hover:bg-blue-950 hover:text-white border border-gray-500 border-solid rounded-full h-7 w-7 flex justify-center items-center max-sm:hidden'>4</button>
                 <button className='bg-blue-950 text-white border border-blue-950 border-solid rounded-full h-7 w-7 flex justify-center items-center'><FaArrowRight  /></button>
             </section>
         </main>
