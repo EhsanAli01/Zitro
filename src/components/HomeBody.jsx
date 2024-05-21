@@ -21,38 +21,34 @@ const HomeBody = () => {
         }
     };
 
-    const searchFilterHandler = (e) => {
-        const initialfilter = products.filter((product) => product.price >= 60 && product.discountPercentage >= 10);
-
-        if (e === 'active') {
-            setFilteredProducts(initialfilter);
-            setActive(true);
-            return;
-        }
-        if (e === 'posted') {
-            setFilteredProducts(products);
-            setActive(false);
-            return;
-        }
-
+    const searchHandler = (e) => {
         const searchQuery = e.target.value.trim().toLowerCase();
 
         if (searchQuery === '') {
-            if (isActive) {
-                setFilteredProducts(initialfilter);
-                return;
-            } else {
-                setFilteredProducts(products);
-                return;
-            }
+            filterHandler(isActive ? 'active' : 'posted');
+            return;
         }
-        else {
-            const filtered = products.filter((product) =>
-                product.brand.toLowerCase().includes(searchQuery) ||
-                product.title.toLowerCase().includes(searchQuery) ||
-                product.category.toLowerCase().includes(searchQuery)
-            );
-            setFilteredProducts(filtered);
+
+        const filtered = products.filter((product) =>
+            product.brand.toLowerCase().includes(searchQuery) ||
+            product.title.toLowerCase().includes(searchQuery) ||
+            product.category.toLowerCase().includes(searchQuery)
+        );
+
+        setFilteredProducts(filtered);
+    }
+
+
+    const filterHandler = (condition) => {
+
+        if (condition === 'active') {
+            const filteredProducts = products.filter((product) => product.price >= 60 && product.discountPercentage >= 10);
+            setActive(true);
+            setFilteredProducts(filteredProducts);
+        }
+        if (condition === 'posted') {
+            setActive(false);
+            setFilteredProducts(products);
         }
     }
 
@@ -64,11 +60,11 @@ const HomeBody = () => {
         <main className='h-5/6'>
             <section className='h-24 mt-4 flex justify-between items-center max-md:flex-col-reverse max-md:my-6 max-md:mx-24 max-sm:mx-6 max-md:h-20'>
                 <div className='mx-24 h-8 border border-blue-950 flex items-center rounded-full overflow-hidden font-semibold max-sm:text-sm max-sm:mx-10'>
-                    <button onClick={() => searchFilterHandler('posted')} className={`flex items-center px-3 py-2 h-full ${isActive ? '' : 'bg-slate-800 text-white'}`}>Posted</button>
-                    <button onClick={() => searchFilterHandler('active')} className={`flex items-center px-3 py-2 h-full ${isActive ? 'bg-slate-800 text-white' : ''}`}>Active</button>
+                    <button onClick={() => filterHandler('posted')} className={`flex items-center px-3 py-2 h-full ${isActive ? '' : 'bg-slate-800 text-white'}`}>Posted</button>
+                    <button onClick={() => filterHandler('active')} className={`flex items-center px-3 py-2 h-full ${isActive ? 'bg-slate-800 text-white' : ''}`}>Active</button>
                 </div>
                 <div id='searchdiv' className='mx-24 w-60 h-8 flex items-center border border-gray-600 rounded-full overflow-hidden  max-sm:mx-10 max-md:w-full' >
-                    <input type="search" id='search' placeholder='Search' className='px-4 py-1 border-none outline-none flex w-full items-center' onChange={searchFilterHandler} />
+                    <input type="search" id='search' placeholder='Search' className='px-4 py-1 border-none outline-none flex w-full items-center' onChange={searchHandler} />
                     <IoSearchSharp id='searchIcon' className='h-6 w-6 mx-2' />
                 </div>
             </section>
